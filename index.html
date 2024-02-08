@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="icon" href="https://cdn2.iconfinder.com/data/icons/weather-flat-14/64/weather02-512.png"
+        type="image/x-icon">
+    <link rel="stylesheet" href="style1.css">
+</head>
+
+<body>
+    <div class="desktop">
+        <div class="header">
+            <div class="left">
+                <div class="logo-icon"><i class="fa-brands fa-skyatlas" style="color: #ffffff;"></i></div>
+                <div class="logo-title">WeatherMe</div>
+                <div class="time-now">
+                    <div id="wrapper">
+                        <span id="hours">00</span>
+                        <span>:</span>
+                        <span id="mins">00</span>
+                        <span>:</span>
+                        <span id="seconds">00</span>
+                        <span id="ampm">AM</span>
+                    </div>
+                </div>
+            </div>
+            <div class="right">
+                <div class="today links-1">Today</div>
+                <div class="tomorrow links-1">Tomorrow</div>
+                <div class="monthly-forecast links-1">Monthly-forecast</div>
+            </div>
+        </div>
+        <div class="action-page">
+            <div class="converter">
+                <div class="cel c-val">&deg;C</div>
+                <div class="toggle-button">
+                    <div class="toggler"></div>
+                </div>
+                <div class="farhen c-val">&deg;F</div>
+            </div>
+            <div class="search">
+                <div class="search-icon"><i class="fa-brands fa-searchengin fa-sm" style="color: #fff;"></i></div>
+                <input class="search-input" type="text" id="location-input" placeholder="Search city..." />
+                <div class="search-btn" onclick="search()">Search</div>
+                <ul id="search-dropdown" class="search-suggestions"></ul>
+            </div>
+        </div>
+        <div class="weather-page">
+            <div class="left-arrow arrow"><i class="fa-solid fa-caret-left" style="color: #ffffff;"></i></div>
+            <div class="main-card">
+                <div class="place">
+                    <div class="location-icon"><i class="fa-solid fa-location-dot" style="color: #ffffff;"></i></div>
+                    <div class="location">Burdwan</div>
+                </div>
+                <div class="weather">
+                    <div class="weather-icon"><i class="fa-solid fa-cloud-rain" style="color: #ffffff;"></i></div>
+                    <div class="weather-value">27</div>
+                    <div class="cel">°C</div>
+                </div>
+                <div class="date-day">
+                    <div class="date">Aug 23</div>
+                    <div class="day">Tue</div>
+                </div>
+                <div class="climate-report">
+                    <div class="climate-report-text">
+                        <div class="humidity-text climate-text">HUMIDITY</div>
+                        <div class="visibility-text climate-text">VISIBLITY</div>
+                        <div class="airpressure-text climate-text">AIR PRESSURE</div>
+                        <div class="wind-text climate-text">WIND</div>
+                    </div>
+                    <div class="climate-report-value">
+                        <div class="humidity-value climate-value">99%</div>
+                        <div class="visibility-value climate-value">8km</div>
+                        <div class="airpressure-value climate-value">1005hPa</div>
+                        <div class="wind-value climate-value">2mph</div>
+                    </div>
+                </div>
+            </div>
+            <div class="right-arrow arrow"><i class="fa-solid fa-caret-right" style="color: #ffffff;"></i></div>
+        </div>
+        <div class="hourly-forecast">
+            <div class="hourly-card">
+                <div class="time">21:00</div>
+                <div class="forecast-icon"><i class="fa-solid fa-cloud"></i></div>
+                <div class="weather1-value">28</div>
+                <div class="cel-far">&deg;C</div>
+            </div>
+            <div class="hourly-card">
+                <div class="time">21:00</div>
+                <div class="forecast-icon"><i class="fa-solid fa-cloud"></i></div>
+                <div class="weather1-value">28</div>
+                <div class="cel-far">&deg;C</div>
+            </div>
+            <div class="hourly-card">
+                <div class="time">21:00</div>
+                <div class="forecast-icon"><i class="fa-solid fa-cloud"></i></div>
+                <div class="weather1-value">28</div>
+                <div class="cel-far">&deg;C</div>
+            </div>
+            <div class="hourly-card">
+                <div class="time">21:00</div>
+                <div class="forecast-icon"><i class="fa-solid fa-cloud"></i></div>
+                <div class="weather1-value">28</div>
+                <div class="cel-far">&deg;C</div>
+            </div>
+            <div class="hourly-card">
+                <div class="time">21:00</div>
+                <div class="forecast-icon"><i class="fa-solid fa-cloud"></i></div>
+                <div class="weather1-value">28</div>
+                <div class="cel-far">&deg;C</div>
+            </div>
+            <div class="hourly-card">
+                <div class="time">21:00</div>
+                <div class="forecast-icon"><i class="fa-solid fa-cloud"></i></div>
+                <div class="weather1-value">28</div>
+                <div class="cel-far">&deg;C</div>
+            </div>
+            <div class="hourly-card">
+                <div class="time">21:00</div>
+                <div class="forecast-icon"><i class="fa-solid fa-cloud"></i></div>
+                <div class="weather1-value">28</div>
+                <div class="cel-far">&deg;C</div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="copy-right">&copy; MyLabs@2023</div>
+        </div>
+    </div>
+
+    <script src="https://kit.fontawesome.com/acd31a11c2.js" crossorigin="anonymous"></script>
+    <script>
+        const locationInput = document.getElementById('location-input');
+        let dropdown;
+        async function search(place) {
+            const geoNameApi = `http://api.geonames.org/postalCodeSearchJSON?placename_startsWith=${place}&maxRows=10&username=arun&country=IN`
+
+
+            try {
+                const res = await fetch(geoNameApi);
+                data = await res.json();
+
+                dropdown.innerHTML = '';
+
+                if (data.postalCodes) {
+                    data.postalCodes.forEach((postalCode) => {
+                        const listItem = document.createElement('li');
+                        listItem.textContent = postalCode.placeName;
+                        listItem.addEventListener('click', function () {
+                            locationInput.value = postalCode.placeName;
+                            clearAutocomplete();
+                            SelectFromOptions(postalCode);
+                        });
+                        dropdown.appendChild(listItem);
+                    });
+                }
+
+            } catch (error) {
+                console.log('Error in autocomplete: ' + error);
+            }
+        }
+
+
+
+        dropdown = document.getElementById('search-dropdown');
+        let data;
+
+        function clearAutocomplete() {
+            dropdown.innerHTML = '';
+            locationInput.value = '';
+        }
+
+        function SelectFromOptions(postalCode) {
+            console.log('SelectFromOptions function has been invoked');
+            const str = JSON.stringify(postalCode);
+            console.log('The single object: ' + str);
+            console.log(postalCode.lat);
+            console.log(postalCode.lng);
+            getWeatherDetails(postalCode.lat, postalCode.lng)
+            const name = document.getElementById("location");
+            name.innerHTML = postalCode.placeName;
+        }
+
+        let selectedIndex = -1;
+        locationInput.addEventListener('keydown', function (e) {
+            const dropdownItems = document.querySelectorAll('#location-dropdown li');
+
+            if (e.key === 'ArrowDown' && selectedIndex <= dropdownItems.length - 1) {
+                selectedIndex++;
+            } else if (e.key === 'ArrowUp' && selectedIndex > 0) {
+                selectedIndex--;
+            }
+
+            // Highlight the selected item
+            dropdownItems.forEach((item, index) => {
+                item.classList.toggle('selected', index === selectedIndex);
+            });
+        });
+
+        locationInput.addEventListener('keyup', function (e) {
+            if (e.key === 'Enter' && selectedIndex !== -1) {
+                const selectedListItem = document.querySelectorAll('#location-dropdown li')[selectedIndex];
+                if (selectedListItem) {
+                    const selectedPlace = data.postalCodes[selectedIndex];
+                    locationInput.value = selectedPlace.placeName;
+                    clearAutocomplete();
+                    SelectFromOptions(selectedPlace);
+                }
+            }
+        });
+
+
+
+        let data2;
+        async function getWeatherDetails(lat, lon) {
+            const key = "e3b48c2b7880735a8c105294ce15004a";
+            const api2 = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${key}`;
+            try {
+                const response = await fetch(api2);
+                data2 = await response.json();
+                console.log(data2);
+            } catch (e) {
+                console.log("The error is: " + e);
+            }
+            const humidity = document.getElementById("humidity-value");
+            const visibility = document.getElementById("visibility-value");
+            const airPressure = document.getElementById("airpressure-value");
+            const wind = document.getElementById("wind-value");
+            const temp = document.getElementById("weather-value");
+
+
+            temp.innerHTML = (data2.main.temp_max - 273).toFixed(2);
+            // temp.innerHTML = (data2.main.temp_max - 273).toFixed(2) + "°C";
+            humidity.innerHTML = data2.main.humidity + "%";
+            wind.innerHTML = data2.wind.speed + " mph";
+            visibility.innerHTML = (data2.visibility / 1000) + " km";
+            airPressure.innerHTML = data2.main.pressure + " hPa";
+
+
+            document.getElementById("location-input").value = ""
+        }
+
+        locationInput.addEventListener('input', function (e) {
+            const place = e.target.value;
+            if (place.trim() !== '') {
+                search(place);
+            } else {
+                clearAutocomplete();
+            }
+        });
+
+
+
+
+
+
+        let ampm = document.getElementById('ampm')
+        function displayTime() {
+            let dateTime = new Date();
+            let hr = dateTime.getHours();
+            let min = padZero(dateTime.getMinutes());
+            let sec = padZero(dateTime.getSeconds());
+            if (hr > 12) {
+                hr = hr - 12
+                ampm.innerHTML = 'PM'
+            }
+
+            document.getElementById('hours').innerHTML = padZero(hr)
+            document.getElementById('mins').innerHTML = min
+            document.getElementById('seconds').innerHTML = sec
+        }
+
+        function padZero(num) {
+            return num < 10 ? "0" + num : num
+        }
+
+        setInterval(displayTime, 500);
+    </script>
+
+</body>
+
+</html>
