@@ -1,283 +1,258 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather App</title>
-    <link rel="icon" href="https://cdn2.iconfinder.com/data/icons/weather-flat-14/64/weather02-512.png"
-        type="image/x-icon">
-    <link rel="stylesheet" href="style1.css">
+    <meta charset="utf-8" />
+    <!-- <link rel="stylesheet" href="globals.css" /> -->
+    <link rel="stylesheet" href="./index.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
 </head>
 
 <body>
     <div class="desktop">
-        <div class="header">
-            <div class="left">
-                <div class="logo-icon"><i class="fa-brands fa-skyatlas" style="color: #ffffff;"></i></div>
-                <div class="logo-title">WeatherMe</div>
-                <div class="time-now">
-                    <div id="wrapper">
-                        <span id="hours">00</span>
-                        <span>:</span>
-                        <span id="mins">00</span>
-                        <span>:</span>
-                        <span id="seconds">00</span>
-                        <span id="ampm">AM</span>
+        <div class="div">
+            <div class="overlap">
+                <div class="overlap-group">
+                    <div class="rectangle"></div>
+                    <div class="group">
+                    </div>
+                    <div id="text-wrapper">27°C</div>
+                    <div id="text-wrapper-2">Burdwan</div>
+                    <div class="humidity">HUMIDITY</div>
+                    <div class="visiblity">VISIBILITY</div>
+                    <div class="air-pressure">AIR PRESSURE</div>
+                    <div class="wind">WIND</div>
+                    <div id="text-wrapper-3">99%</div>
+                    <div id="text-wrapper-4">8km</div>
+                    <div id="text-wrapper-5">1005hPa</div>
+                    <div id="text-wrapper-6">2mph</div>
+                    <img class="icon-location" src="./Assests/icon-location.png" />
+                    <div class="rectangle-2"></div>
+                    <div id="aug-tue">Aug 23,&nbsp;&nbsp;Tue</div>
+                    <img class="icon-temperature" src="./Assests/icon-temperature.png" />
+                </div>
+                <img class="icon-chevron-left" src="./Assests/icon-chevron-left-arrow.png" />
+            </div>
+            <div class="overlap-2">
+                <div class="overlap-3">
+                    <div class="overlap-4">
+                        <div class="group-wrapper">
+                            <div class="overlap-wrapper">
+                                <div class="overlap-5">
+                                    <div class="sun">
+                                        <div class="overlap-group-3">
+                                            <img class="ellipse" src="" /> <img class="union-2" src="" />
+                                        </div>
+                                    </div>
+                                    <div class="img-wrapper"><img class="union-3" src="./Assests/group-46.png" /></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-wrapper-7">WeatherMe</div>
+                        <p class="today"><span class="span">Today</span> <span class="text-wrapper-8">&nbsp;</span></p>
+                        <div class="text-wrapper-9">Tomorrow</div>
+                        <div class="text-wrapper-10">Monthly Forecast</div>
+                        <img class="line" src="" />
+                        <div id="text-wrapper-11">21:00 pm</div>
+                    </div>
+                    <div class="text-wrapper-12">°C</div>
+                    <div class="text-wrapper-13">F</div>
+                </div>
+                <!-- ------------------------------------------------------------------------------------------------- -->
+                <!-- Toogle -->
+                <div class="ellipse-wrapper" id="toggleButton">
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                    <!-- <div class="ellipse-2"></div> -->
+                </div>
+            </div>
+            <!-- ----------------------------------------------------------------------------------------------------- -->
+            <!-- Search Box -->
+            <!-- <div class="overlap-6">
+                <img class="icon-search" src="./Assests/Search.svg" onclick="search()" />
+                <input type="text" data-autocomplete autocomplete-minlength="3" class="text-wrapper-14" id="searchInput"
+                    onchange="SelectFromOptions()" placeholder="Enter the location">
+                <datalist id="places"></datalist> 
+                <ul id="places" class="suggestions"></ul>
+            </div> -->
+
+            <div class="overlap-6">
+                <img class="icon-search" src="./Assests/Search.svg" onclick="search()" />
+                <input id="myInput" class="text-wrapper-14" type="text" name="myCountry" placeholder="Search the place">
+                <ul id="dropdown" class="suggestions"></ul>
+            </div>
+            <!-- <div class="overlap-0216">
+                <select id="realitems" class="text-wrapper-14" onchange="SelectFromOptions()">
+                    <option value="">select...</option>
+                </select> 
+            </div> -->
+            <!-- ----------------------------------------------------------------------------------------------------- -->
+            <div class="rectangle-3"></div>
+            <img id="icon-chevron-left-2" src="./Assests/icon-chevron-left-arrow-jiM.png" onclick="getPrevious()" />
+            <div class="overlap-7">
+                <div class="rectangle-4"></div>
+                <div class="rectangle-5"></div>
+                <div class="overlap-group-wrapper">
+                    <div class="overlap-8">
+                        <div class="rain">
+                            <div class="group-2">
+                                <div class="rectangle-6"></div>
+                                <div class="rectangle-7"></div>
+                                <div class="rectangle-8"></div>
+                                <div class="rectangle-9"></div>
+                            </div>
+                            <div class="group-3">
+                                <div class="rectangle-6"></div>
+                                <div class="rectangle-7"></div>
+                                <div class="rectangle-8"></div>
+                                <div class="rectangle-9"></div>
+                            </div>
+                        </div>
+                        <div class="dark-cloud"><img class="union-4" src="./Assests/group-17.png" /></div>
+                    </div>
+                </div>
+                <div class="text-wrapper-15">19:00 pm</div>
+                <div class="text-wrapper-16">29°</div>
+            </div>
+            <div class="overlap-9">
+                <div class="rectangle-10"></div>
+                <div class="rectangle-11"></div>
+                <div class="text-wrapper-17">7:00am</div>
+                <div class="text-wrapper-18">27°</div>
+                <div class="div-wrapper">
+                    <div class="overlap-10">
+                        <div class="group-4">
+                            <div class="snow"><img class="union-5" src="" /></div>
+                            <div class="snow-2"><img class="union-6" src="" /></div>
+                            <div class="snow-3"><img class="union-7" src="" /></div>
+                        </div>
+                        <div class="cloud-2"><img class="union-8" src="./Assests/group-46.png" /></div>
                     </div>
                 </div>
             </div>
-            <div class="right">
-                <div class="today links-1">Today</div>
-                <div class="tomorrow links-1">Tomorrow</div>
-                <div class="monthly-forecast links-1">Monthly-forecast</div>
-            </div>
-        </div>
-        <div class="action-page">
-            <div class="converter">
-                <div class="cel c-val">&deg;C</div>
-                <div class="toggle-button">
-                    <div class="toggler"></div>
-                </div>
-                <div class="farhen c-val">&deg;F</div>
-            </div>
-            <div class="search">
-                <div class="search-icon"><i class="fa-brands fa-searchengin fa-sm" style="color: #fff;"></i></div>
-                <input class="search-input" type="text" id="location-input" placeholder="Search city..." />
-                <div class="search-btn" onclick="search()">Search</div>
-                <ul id="search-dropdown" class="search-suggestions"></ul>
-            </div>
-        </div>
-        <div class="weather-page">
-            <div class="left-arrow arrow"><i class="fa-solid fa-caret-left" style="color: #ffffff;"></i></div>
-            <div class="main-card">
-                <div class="place">
-                    <div class="location-icon"><i class="fa-solid fa-location-dot" style="color: #ffffff;"></i></div>
-                    <div class="location">Burdwan</div>
-                </div>
-                <div class="weather">
-                    <div class="weather-icon"><i class="fa-solid fa-cloud-rain" style="color: #ffffff;"></i></div>
-                    <div class="weather-value">27</div>
-                    <div class="cel">°C</div>
-                </div>
-                <div class="date-day">
-                    <div class="date">Aug 23</div>
-                    <div class="day">Tue</div>
-                </div>
-                <div class="climate-report">
-                    <div class="climate-report-text">
-                        <div class="humidity-text climate-text">HUMIDITY</div>
-                        <div class="visibility-text climate-text">VISIBLITY</div>
-                        <div class="airpressure-text climate-text">AIR PRESSURE</div>
-                        <div class="wind-text climate-text">WIND</div>
-                    </div>
-                    <div class="climate-report-value">
-                        <div class="humidity-value climate-value">99%</div>
-                        <div class="visibility-value climate-value">8km</div>
-                        <div class="airpressure-value climate-value">1005hPa</div>
-                        <div class="wind-value climate-value">2mph</div>
+            <div class="overlap-11">
+                <div class="rectangle-10"></div>
+                <div class="rectangle-12"></div>
+                <div class="group-5">
+                    <div class="group-6">
+                        <div class="overlap-12">
+                            <div class="sun-2">
+                                <div class="overlap-group-4">
+                                    <img class="ellipse-3" src="" /> <img class="union-9" src="" />
+                                </div>
+                            </div>
+                            <div class="cloud-3"><img class="union-10" src="./Assests/group-41.png" /></div>
+                        </div>
                     </div>
                 </div>
+                <div class="text-wrapper-17">5:00am</div>
+                <div class="text-wrapper-19">31°</div>
             </div>
-            <div class="right-arrow arrow"><i class="fa-solid fa-caret-right" style="color: #ffffff;"></i></div>
-        </div>
-        <div class="hourly-forecast">
-            <div class="hourly-card">
-                <div class="time">21:00</div>
-                <div class="forecast-icon"><i class="fa-solid fa-cloud"></i></div>
-                <div class="weather1-value">28</div>
-                <div class="cel-far">&deg;C</div>
+            <div class="overlap-13">
+                <div class="rectangle-10"></div>
+                <div class="rectangle-11"></div>
+                <div class="text-wrapper-20">3:00am</div>
+                <div class="text-wrapper-21">29°</div>
+                <div class="group-7">
+                    <div class="overlap-8">
+                        <div class="storm">
+                            <div class="overlap-group-5">
+                                <img class="lightning" src="" />
+                                <div class="group-8">
+                                    <div class="rectangle-13"></div>
+                                    <div class="rectangle-14"></div>
+                                    <div class="rectangle-15"></div>
+                                    <div class="rectangle-16"></div>
+                                </div>
+                                <div class="group-9">
+                                    <div class="rectangle-14"></div>
+                                    <div class="rectangle-13"></div>
+                                    <div class="rectangle-16"></div>
+                                    <div class="rectangle-15"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="group-10">
+                            <div class="overlap-14">
+                                <div class="dark-cloud-2"><img class="union-11" src="./Assests/group-44.png" /></div>
+                                <img class="union-12" src="./Assests/group-43.png" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="hourly-card">
-                <div class="time">21:00</div>
-                <div class="forecast-icon"><i class="fa-solid fa-cloud"></i></div>
-                <div class="weather1-value">28</div>
-                <div class="cel-far">&deg;C</div>
+            <div class="overlap-15">
+                <div class="rectangle-10"></div>
+                <div class="rectangle-12"></div>
+                <div class="text-wrapper-22">1:00am</div>
+                <div class="text-wrapper-23">26°</div>
+                <div class="group-11">
+                    <div class="overlap-8">
+                        <div class="storm">
+                            <div class="overlap-group-5">
+                                <img class="lightning" src="" />
+                                <div class="group-8">
+                                    <div class="rectangle-13"></div>
+                                    <div class="rectangle-14"></div>
+                                    <div class="rectangle-15"></div>
+                                    <div class="rectangle-16"></div>
+                                </div>
+                                <div class="group-9">
+                                    <div class="rectangle-14"></div>
+                                    <div class="rectangle-13"></div>
+                                    <div class="rectangle-16"></div>
+                                    <div class="rectangle-15"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="group-10">
+                            <div class="overlap-14">
+                                <div class="dark-cloud-2"><img class="union-11" src="./Assests/group-44.png" /></div>
+                                <img class="union-12" src="./Assests/group-43.png" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="hourly-card">
-                <div class="time">21:00</div>
-                <div class="forecast-icon"><i class="fa-solid fa-cloud"></i></div>
-                <div class="weather1-value">28</div>
-                <div class="cel-far">&deg;C</div>
+            <div class="overlap-16">
+                <div class="rectangle-10"></div>
+                <div class="rectangle-12"></div>
+                <div class="group-12">
+                    <div class="overlap-17">
+                        <img class="lightning-2" src="" />
+                        <div class="group-13">
+                            <div class="overlap-group-6">
+                                <!-- <div class="dark-cloud-3"><img class="union-13" src="" /></div> -->
+                                <img class="union-14" src="./Assests/group-44.png" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-wrapper-24">23:00pm</div>
+                <div class="text-wrapper-25">27°</div>
             </div>
-            <div class="hourly-card">
-                <div class="time">21:00</div>
-                <div class="forecast-icon"><i class="fa-solid fa-cloud"></i></div>
-                <div class="weather1-value">28</div>
-                <div class="cel-far">&deg;C</div>
+            <div class="overlap-18">
+                <div class="rectangle-17"></div>
+                <div class="rectangle-12"></div>
+                <div class="group-14">
+                    <div class="group-15">
+                        <div class="overlap-group-7">
+                            <!-- <div class="cloud-4"><img class="union-15" src="" /></div> -->
+                            <div class="cloud-5"><img class="union-16" src="./Assests/group-41.png" /></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-wrapper-17">21:00 pm</div>
+                <div class="text-wrapper-19">27°</div>
             </div>
-            <div class="hourly-card">
-                <div class="time">21:00</div>
-                <div class="forecast-icon"><i class="fa-solid fa-cloud"></i></div>
-                <div class="weather1-value">28</div>
-                <div class="cel-far">&deg;C</div>
-            </div>
-            <div class="hourly-card">
-                <div class="time">21:00</div>
-                <div class="forecast-icon"><i class="fa-solid fa-cloud"></i></div>
-                <div class="weather1-value">28</div>
-                <div class="cel-far">&deg;C</div>
-            </div>
-            <div class="hourly-card">
-                <div class="time">21:00</div>
-                <div class="forecast-icon"><i class="fa-solid fa-cloud"></i></div>
-                <div class="weather1-value">28</div>
-                <div class="cel-far">&deg;C</div>
-            </div>
-        </div>
-        <div class="footer">
-            <div class="copy-right">&copy; MyLabs@2023</div>
         </div>
     </div>
+</body>
+<!-- <script src="https://cdn.jsdelivr.net/npm/datalist-css/dist/datalist-css.min.js"></script> -->
 
-    <script src="https://kit.fontawesome.com/acd31a11c2.js" crossorigin="anonymous"></script>
-    <script>
-        const locationInput = document.getElementById('location-input');
-        let dropdown;
-        async function search(place) {
-            const geoNameApi = `http://api.geonames.org/postalCodeSearchJSON?placename_startsWith=${place}&maxRows=10&username=arun&country=IN`
-
-
-            try {
-                const res = await fetch(geoNameApi);
-                data = await res.json();
-
-                dropdown.innerHTML = '';
-
-                if (data.postalCodes) {
-                    data.postalCodes.forEach((postalCode) => {
-                        const listItem = document.createElement('li');
-                        listItem.textContent = postalCode.placeName;
-                        listItem.addEventListener('click', function () {
-                            locationInput.value = postalCode.placeName;
-                            clearAutocomplete();
-                            SelectFromOptions(postalCode);
-                        });
-                        dropdown.appendChild(listItem);
-                    });
-                }
-
-            } catch (error) {
-                console.log('Error in autocomplete: ' + error);
-            }
-        }
-
-
-
-        dropdown = document.getElementById('search-dropdown');
-        let data;
-
-        function clearAutocomplete() {
-            dropdown.innerHTML = '';
-            locationInput.value = '';
-        }
-
-        function SelectFromOptions(postalCode) {
-            console.log('SelectFromOptions function has been invoked');
-            const str = JSON.stringify(postalCode);
-            console.log('The single object: ' + str);
-            console.log(postalCode.lat);
-            console.log(postalCode.lng);
-            getWeatherDetails(postalCode.lat, postalCode.lng)
-            const name = document.getElementById("location");
-            name.innerHTML = postalCode.placeName;
-        }
-
-        let selectedIndex = -1;
-        locationInput.addEventListener('keydown', function (e) {
-            const dropdownItems = document.querySelectorAll('#location-dropdown li');
-
-            if (e.key === 'ArrowDown' && selectedIndex <= dropdownItems.length - 1) {
-                selectedIndex++;
-            } else if (e.key === 'ArrowUp' && selectedIndex > 0) {
-                selectedIndex--;
-            }
-
-            // Highlight the selected item
-            dropdownItems.forEach((item, index) => {
-                item.classList.toggle('selected', index === selectedIndex);
-            });
-        });
-
-        locationInput.addEventListener('keyup', function (e) {
-            if (e.key === 'Enter' && selectedIndex !== -1) {
-                const selectedListItem = document.querySelectorAll('#location-dropdown li')[selectedIndex];
-                if (selectedListItem) {
-                    const selectedPlace = data.postalCodes[selectedIndex];
-                    locationInput.value = selectedPlace.placeName;
-                    clearAutocomplete();
-                    SelectFromOptions(selectedPlace);
-                }
-            }
-        });
-
-
-
-        let data2;
-        async function getWeatherDetails(lat, lon) {
-            const key = "e3b48c2b7880735a8c105294ce15004a";
-            const api2 = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${key}`;
-            try {
-                const response = await fetch(api2);
-                data2 = await response.json();
-                console.log(data2);
-            } catch (e) {
-                console.log("The error is: " + e);
-            }
-            const humidity = document.getElementById("humidity-value");
-            const visibility = document.getElementById("visibility-value");
-            const airPressure = document.getElementById("airpressure-value");
-            const wind = document.getElementById("wind-value");
-            const temp = document.getElementById("weather-value");
-
-
-            temp.innerHTML = (data2.main.temp_max - 273).toFixed(2);
-            // temp.innerHTML = (data2.main.temp_max - 273).toFixed(2) + "°C";
-            humidity.innerHTML = data2.main.humidity + "%";
-            wind.innerHTML = data2.wind.speed + " mph";
-            visibility.innerHTML = (data2.visibility / 1000) + " km";
-            airPressure.innerHTML = data2.main.pressure + " hPa";
-
-
-            document.getElementById("location-input").value = ""
-        }
-
-        locationInput.addEventListener('input', function (e) {
-            const place = e.target.value;
-            if (place.trim() !== '') {
-                search(place);
-            } else {
-                clearAutocomplete();
-            }
-        });
-
-
-
-
-
-
-        let ampm = document.getElementById('ampm')
-        function displayTime() {
-            let dateTime = new Date();
-            let hr = dateTime.getHours();
-            let min = padZero(dateTime.getMinutes());
-            let sec = padZero(dateTime.getSeconds());
-            if (hr > 12) {
-                hr = hr - 12
-                ampm.innerHTML = 'PM'
-            }
-
-            document.getElementById('hours').innerHTML = padZero(hr)
-            document.getElementById('mins').innerHTML = min
-            document.getElementById('seconds').innerHTML = sec
-        }
-
-        function padZero(num) {
-            return num < 10 ? "0" + num : num
-        }
-
-        setInterval(displayTime, 500);
-    </script>
+<script src="./index.js"></script>
 
 </body>
 
